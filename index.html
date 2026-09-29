@@ -1,0 +1,4254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🚀 AstroQuiz — Missão Sistema Solar</title>
+
+<style>
+
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --space: #050817;
+    --space2: #0b1230;
+    --purple: #7c4dff;
+    --blue: #24c6ff;
+    --cyan: #58f0ff;
+    --pink: #ff4fd8;
+    --yellow: #ffd84d;
+    --green: #42e695;
+    --red: #ff5577;
+    --orange: #ff9d42;
+    --white: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            #242064,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            #122d66,
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #030511,
+            #09102c,
+            #11153d
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   ESTRELAS
+========================================================= */
+
+.stars,
+.stars2,
+.stars3 {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    background-repeat: repeat;
+}
+
+.stars {
+    background-image:
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        );
+
+    background-size: 75px 75px;
+
+    opacity: .35;
+}
+
+.stars2 {
+    background-image:
+        radial-gradient(
+            #8cecff 1px,
+            transparent 1px
+        );
+
+    background-size: 125px 125px;
+
+    opacity: .25;
+
+    animation:
+        moveStars 50s linear infinite;
+}
+
+.stars3 {
+    background-image:
+        radial-gradient(
+            #ff8ee8 1px,
+            transparent 1px
+        );
+
+    background-size: 180px 180px;
+
+    opacity: .2;
+
+    animation:
+        moveStars 80s linear infinite reverse;
+}
+
+@keyframes moveStars {
+
+    from {
+        transform:
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateY(150px);
+    }
+}
+
+
+/* =========================================================
+   PLANETAS DECORATIVOS
+========================================================= */
+
+.space-object {
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    opacity: .5;
+
+    filter:
+        drop-shadow(
+            0 0 30px
+            rgba(255,255,255,.2)
+        );
+}
+
+.planet-decoration1 {
+    width: 150px;
+    height: 150px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4b55f,
+            #8c432f
+        );
+
+    right: -55px;
+    top: 300px;
+}
+
+.planet-decoration2 {
+    width: 100px;
+    height: 100px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffce72,
+            #e88943
+        );
+
+    left: -35px;
+    bottom: 200px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 700px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 950px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.rocket {
+    font-size: 6rem;
+
+    display: inline-block;
+
+    animation:
+        rocketFloat 3s ease-in-out infinite;
+}
+
+@keyframes rocketFloat {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            translateY(-25px)
+            rotate(5deg);
+    }
+}
+
+.hero h1 {
+    font-size:
+        clamp(
+            3rem,
+            9vw,
+            7rem
+        );
+
+    line-height: .9;
+
+    margin: 20px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #6beaff,
+            #d785ff,
+            #fff
+        );
+
+    background-size:
+        300% auto;
+
+    -webkit-background-clip:
+        text;
+
+    color: transparent;
+
+    animation:
+        gradientText 5s linear infinite;
+}
+
+@keyframes gradientText {
+
+    to {
+        background-position:
+            300% center;
+    }
+}
+
+.hero h1 span {
+    color: var(--yellow);
+}
+
+.hero p {
+    max-width: 780px;
+
+    margin: auto;
+
+    color: #cbd3ff;
+
+    font-size: 1.2rem;
+
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 35px;
+}
+
+.btn {
+    border: none;
+
+    border-radius: 50px;
+
+    padding:
+        16px 30px;
+
+    font-weight: bold;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition:
+        .25s;
+}
+
+.btn:hover {
+    transform:
+        translateY(-5px)
+        scale(1.02);
+}
+
+.btn-primary {
+    background:
+        var(--yellow);
+
+    color:
+        #332500;
+
+    box-shadow:
+        0 7px #b99500;
+}
+
+.btn-secondary {
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    color: white;
+}
+
+
+/* =========================================================
+   SOL
+========================================================= */
+
+.sun {
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fffbd0,
+            #ffd447 30%,
+            #ff8c21 70%,
+            #ff5c00
+        );
+
+    box-shadow:
+        0 0 40px #ffba38,
+        0 0 100px #ff8a1c,
+        0 0 180px rgba(255,130,20,.35);
+
+    right:
+        -70px;
+
+    top:
+        80px;
+
+    animation:
+        sunPulse 4s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+
+    50% {
+        transform:
+            scale(1.06);
+    }
+}
+
+
+/* =========================================================
+   PAINEL DE ESTATÍSTICAS
+========================================================= */
+
+.stats {
+    width:
+        min(1050px, 94%);
+
+    margin:
+        -70px auto 0;
+
+    position: relative;
+
+    z-index: 5;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter:
+        blur(15px);
+
+    border-radius:
+        30px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.35);
+}
+
+.stat {
+    padding: 25px 15px;
+
+    text-align: center;
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.1);
+}
+
+.stat:last-child {
+    border: none;
+}
+
+.stat-icon {
+    font-size: 2rem;
+}
+
+.stat strong {
+    display: block;
+
+    color:
+        var(--cyan);
+
+    font-size:
+        1.8rem;
+
+    margin:
+        5px 0;
+}
+
+.stat small {
+    color:
+        #aeb8dc;
+}
+
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+section {
+    padding:
+        100px 20px;
+}
+
+.container {
+    width:
+        min(1150px, 100%);
+
+    margin:
+        auto;
+}
+
+.section-title {
+    text-align:
+        center;
+
+    margin-bottom:
+        50px;
+}
+
+.section-title .emoji {
+    font-size:
+        3rem;
+}
+
+.section-title h2 {
+    font-size:
+        clamp(
+            2.2rem,
+            5vw,
+            4rem
+        );
+
+    margin:
+        12px 0;
+
+    color:
+        white;
+}
+
+.section-title p {
+    color:
+        #aeb8dc;
+
+    font-size:
+        1.1rem;
+}
+
+
+/* =========================================================
+   NÍVEIS
+========================================================= */
+
+.levels {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap:
+        17px;
+}
+
+.level {
+    position:
+        relative;
+
+    min-height:
+        150px;
+
+    padding:
+        20px;
+
+    border-radius:
+        24px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        2px solid
+        rgba(255,255,255,.08);
+
+    cursor:
+        pointer;
+
+    transition:
+        .25s;
+
+    overflow:
+        hidden;
+}
+
+.level::before {
+    content: "";
+
+    position:
+        absolute;
+
+    width:
+        100px;
+
+    height:
+        100px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,.05);
+
+    right:
+        -30px;
+
+    bottom:
+        -30px;
+}
+
+.level:hover {
+    transform:
+        translateY(-8px);
+
+    border-color:
+        var(--cyan);
+
+    background:
+        rgba(70,220,255,.12);
+}
+
+.level.active {
+    background:
+        linear-gradient(
+            135deg,
+            #6842db,
+            #167cae
+        );
+
+    border-color:
+        var(--yellow);
+
+    box-shadow:
+        0 10px 35px
+        rgba(87,144,255,.3);
+}
+
+.level-number {
+    font-size:
+        2.3rem;
+
+    font-weight:
+        900;
+
+    color:
+        var(--cyan);
+}
+
+.level.active .level-number {
+    color:
+        var(--yellow);
+}
+
+.level-name {
+    margin-top:
+        8px;
+
+    font-weight:
+        bold;
+}
+
+.level-stars {
+    margin-top:
+        10px;
+
+    color:
+        var(--yellow);
+
+    font-size:
+        .85rem;
+}
+
+
+/* =========================================================
+   ÁREA DO JOGO
+========================================================= */
+
+.game-section {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #27206b,
+            transparent 50%
+        );
+}
+
+.game {
+    max-width:
+        1000px;
+
+    margin:
+        auto;
+
+    padding:
+        30px;
+
+    border-radius:
+        35px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.3);
+}
+
+
+/* =========================================================
+   TOPO DO JOGO
+========================================================= */
+
+.game-header {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    gap:
+        20px;
+
+    align-items:
+        center;
+}
+
+.mission {
+    display:
+        flex;
+
+    gap:
+        12px;
+
+    align-items:
+        center;
+}
+
+.mission-icon {
+    width:
+        55px;
+
+    height:
+        55px;
+
+    border-radius:
+        50%;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7447ff,
+            #20bde9
+        );
+
+    font-size:
+        1.6rem;
+}
+
+.mission-name {
+    font-weight:
+        bold;
+}
+
+.progress-box {
+    width:
+        180px;
+
+    height:
+        9px;
+
+    margin-top:
+        7px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border-radius:
+        20px;
+
+    overflow:
+        hidden;
+}
+
+.progress {
+    height:
+        100%;
+
+    width:
+        0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green),
+            var(--cyan)
+        );
+
+    transition:
+        .4s;
+}
+
+.timer {
+    background:
+        var(--red);
+
+    padding:
+        10px 20px;
+
+    border-radius:
+        30px;
+
+    font-weight:
+        bold;
+
+    min-width:
+        90px;
+
+    text-align:
+        center;
+}
+
+.score {
+    text-align:
+        right;
+
+    line-height:
+        1.7;
+}
+
+.score strong {
+    color:
+        var(--yellow);
+}
+
+
+/* =========================================================
+   PERGUNTA
+========================================================= */
+
+.question-area {
+    text-align:
+        center;
+
+    padding:
+        40px 10px 20px;
+}
+
+.badge {
+    display:
+        inline-block;
+
+    padding:
+        8px 17px;
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(255,255,255,.09);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    color:
+        var(--cyan);
+
+    font-weight:
+        bold;
+
+    margin-bottom:
+        15px;
+}
+
+.question-area h3 {
+    font-size:
+        clamp(
+            1.3rem,
+            4vw,
+            1.8rem
+        );
+
+    line-height:
+        1.4;
+
+    margin-bottom:
+        25px;
+}
+
+
+/* =========================================================
+   PLANETA
+========================================================= */
+
+.planet-card {
+    width:
+        min(350px, 90%);
+
+    height:
+        350px;
+
+    margin:
+        20px auto 35px;
+
+    border-radius:
+        50%;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    overflow:
+        visible;
+
+    box-shadow:
+        inset -35px -25px 50px
+        rgba(0,0,0,.45),
+
+        0 0 60px
+        rgba(70,190,255,.25);
+
+    animation:
+        planetAppear .6s ease;
+}
+
+@keyframes planetAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.5)
+            rotate(-20deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+.planet-card::after {
+    content: "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 35%,
+            rgba(255,255,255,.12),
+            transparent 65%
+        );
+
+    animation:
+        planetShine 4s linear infinite;
+}
+
+@keyframes planetShine {
+
+    from {
+        transform:
+            translateX(-150%);
+    }
+
+    to {
+        transform:
+            translateX(150%);
+    }
+}
+
+.planet-emoji {
+    font-size:
+        7rem;
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    filter:
+        drop-shadow(
+            -12px 12px 10px
+            rgba(0,0,0,.3)
+        );
+}
+
+.planet-label {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin-top:
+        5px;
+
+    font-weight:
+        900;
+
+    font-size:
+        1.5rem;
+
+    text-shadow:
+        2px 2px 5px
+        rgba(0,0,0,.6);
+}
+
+
+/* =========================================================
+   CORES DOS PLANETAS
+========================================================= */
+
+.mercurio {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #cfc8bb,
+            #77716a 45%,
+            #3b3937
+        );
+}
+
+.venus {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffe9a8,
+            #d89d4c 50%,
+            #75451f
+        );
+}
+
+.terra {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #55e6ff,
+            #1764c0 45%,
+            #08245d
+        );
+}
+
+.marte {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffb080,
+            #c94e2c 50%,
+            #632112
+        );
+}
+
+.jupiter {
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #d7b48b 0 25px,
+            #a97855 25px 45px,
+            #e7d0ae 45px 65px
+        );
+}
+
+.saturno {
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffe8a0,
+            #d6aa5a 55%,
+            #775a2f
+        );
+}
+
+.urano {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #c4ffff,
+            #62d9df 50%,
+            #277d88
+        );
+}
+
+.netuno {
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #78c8ff,
+            #2762d0 50%,
+            #102b78
+        );
+}
+
+
+/* =========================================================
+   ANEL DE SATURNO
+========================================================= */
+
+.ring {
+    position:
+        absolute;
+
+    width:
+        145%;
+
+    height:
+        30%;
+
+    border:
+        15px solid
+        rgba(238,205,132,.7);
+
+    border-radius:
+        50%;
+
+    transform:
+        rotate(-15deg);
+
+    z-index:
+        1;
+
+    box-shadow:
+        0 0 10px
+        rgba(255,255,255,.2);
+}
+
+
+/* =========================================================
+   RESPOSTAS
+========================================================= */
+
+.answers {
+    max-width:
+        820px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        15px;
+}
+
+.answer {
+    border:
+        3px solid
+        transparent;
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(255,255,255,.95);
+
+    color:
+        #22243c;
+
+    padding:
+        17px;
+
+    font-size:
+        1rem;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    transition:
+        .2s;
+}
+
+.answer:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--yellow);
+}
+
+.answer.correct {
+    background:
+        #b8f7d8;
+
+    border-color:
+        var(--green);
+
+    color:
+        #11633c;
+}
+
+.answer.wrong {
+    background:
+        #ffd0da;
+
+    border-color:
+        var(--red);
+
+    color:
+        #8c1832;
+}
+
+.answer:disabled {
+    cursor:
+        default;
+}
+
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+
+.feedback {
+    min-height:
+        35px;
+
+    margin:
+        20px;
+
+    font-size:
+        1.15rem;
+
+    font-weight:
+        bold;
+}
+
+.hint {
+    min-height:
+        28px;
+
+    color:
+        var(--yellow);
+
+    font-weight:
+        bold;
+
+    line-height:
+        1.5;
+}
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+.controls {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    flex-wrap:
+        wrap;
+
+    margin-top:
+        20px;
+}
+
+.control {
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    background:
+        rgba(255,255,255,.08);
+
+    color:
+        white;
+
+    padding:
+        11px 18px;
+
+    border-radius:
+        25px;
+
+    cursor:
+        pointer;
+}
+
+.control:hover {
+    background:
+        rgba(255,255,255,.18);
+}
+
+
+/* =========================================================
+   CARTÕES SOBRE O SISTEMA SOLAR
+========================================================= */
+
+.knowledge {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        20px;
+}
+
+.knowledge-card {
+    padding:
+        28px;
+
+    border-radius:
+        28px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    transition:
+        .25s;
+}
+
+.knowledge-card:hover {
+    transform:
+        translateY(-8px);
+
+    background:
+        rgba(90,190,255,.1);
+
+    border-color:
+        var(--cyan);
+}
+
+.knowledge-card .icon {
+    font-size:
+        3rem;
+}
+
+.knowledge-card h3 {
+    color:
+        var(--cyan);
+
+    margin:
+        15px 0 10px;
+}
+
+.knowledge-card p {
+    color:
+        #aeb8dc;
+
+    line-height:
+        1.6;
+}
+
+
+/* =========================================================
+   MODAL FINAL
+========================================================= */
+
+.modal {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    background:
+        rgba(1,3,15,.85);
+
+    backdrop-filter:
+        blur(10px);
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    z-index:
+        100;
+
+    padding:
+        20px;
+}
+
+.modal.show {
+    display:
+        flex;
+}
+
+.modal-box {
+    width:
+        min(550px, 100%);
+
+    background:
+        linear-gradient(
+            145deg,
+            #171743,
+            #27175b
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius:
+        35px;
+
+    padding:
+        45px 30px;
+
+    text-align:
+        center;
+
+    animation:
+        modalAppear .35s ease;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.6);
+}
+
+@keyframes modalAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.7);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+}
+
+.modal-icon {
+    font-size:
+        5rem;
+}
+
+.modal-box h2 {
+    margin:
+        15px 0;
+
+    color:
+        var(--cyan);
+}
+
+.final-score {
+    font-size:
+        4rem;
+
+    color:
+        var(--yellow);
+
+    font-weight:
+        900;
+
+    margin:
+        15px;
+}
+
+.final-message {
+    color:
+        #b9c1e5;
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        25px;
+}
+
+
+/* =========================================================
+   CONFETES
+========================================================= */
+
+.confetti {
+    position:
+        fixed;
+
+    width:
+        10px;
+
+    height:
+        18px;
+
+    top:
+        -30px;
+
+    z-index:
+        200;
+
+    animation:
+        confettiFall
+        3s
+        linear
+        forwards;
+}
+
+@keyframes confettiFall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align:
+        center;
+
+    padding:
+        55px 20px;
+
+    background:
+        #02030d;
+
+    color:
+        #9fa8d1;
+}
+
+footer h2 {
+    color:
+        var(--cyan);
+
+    margin-bottom:
+        10px;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width: 950px) {
+
+    .levels {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .knowledge {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width: 700px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .stat:nth-child(2) {
+        border-right:
+            none;
+    }
+
+    .game-header {
+        grid-template-columns:
+            1fr;
+    }
+
+    .score {
+        text-align:
+            left;
+    }
+
+    .levels {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .answers {
+        grid-template-columns:
+            1fr;
+    }
+
+    .planet-card {
+        width:
+            280px;
+
+        height:
+            280px;
+    }
+
+    .planet-emoji {
+        font-size:
+            5rem;
+    }
+
+    .knowledge {
+        grid-template-columns:
+            1fr;
+    }
+
+    .sun {
+        width:
+            140px;
+
+        height:
+            140px;
+
+        right:
+            -50px;
+    }
+
+}
+
+@media(max-width: 450px) {
+
+    .levels {
+        grid-template-columns:
+            1fr;
+    }
+
+    .game {
+        padding:
+            18px;
+    }
+
+    section {
+        padding:
+            70px 15px;
+    }
+
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+button:focus-visible,
+.level:focus-visible {
+    outline:
+        3px solid
+        var(--yellow);
+
+    outline-offset:
+        3px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<div class="space-object planet-decoration1"></div>
+<div class="space-object planet-decoration2"></div>
+
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<header class="hero">
+
+    <div class="sun"></div>
+
+    <div class="hero-content">
+
+        <div class="rocket">
+            🚀
+        </div>
+
+        <h1>
+            ASTRO<span>QUIZ</span>
+        </h1>
+
+        <p>
+            🌌 Prepare sua nave, astronauta!
+            Explore o Sistema Solar e teste seus
+            conhecimentos sobre os planetas.
+            Cada missão traz desafios diferentes
+            sobre suas características, curiosidades
+            e propriedades.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                class="btn btn-primary"
+                href="#levels">
+
+                🚀 Escolher missão
+
+            </a>
+
+            <a
+                class="btn btn-secondary"
+                href="#como-jogar">
+
+                🌎 Como jogar
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ======================================================
+     ESTATÍSTICAS
+====================================================== -->
+
+<div class="stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🪐
+        </div>
+
+        <strong>
+            8
+        </strong>
+
+        <small>
+            Planetas
+        </small>
+
+    </div>
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🎯
+        </div>
+
+        <strong>
+            10
+        </strong>
+
+        <small>
+            Níveis
+        </small>
+
+    </div>
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ❓
+        </div>
+
+        <strong>
+            60+
+        </strong>
+
+        <small>
+            Desafios
+        </small>
+
+    </div>
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🏆
+        </div>
+
+        <strong>
+            ∞
+        </strong>
+
+        <small>
+            Missões
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     NÍVEIS
+====================================================== -->
+
+<section id="levels">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="emoji">
+                🌌
+            </div>
+
+            <h2>
+                Escolha sua missão
+            </h2>
+
+            <p>
+                Quanto maior o nível,
+                mais desafiadoras serão as perguntas.
+            </p>
+
+        </div>
+
+
+        <div class="levels">
+
+            <div class="level active" data-level="1">
+
+                <div class="level-number">
+                    01
+                </div>
+
+                <div class="level-name">
+                    🌱 Cadete Espacial
+                </div>
+
+                <div class="level-stars">
+                    ⭐ Fácil
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="2">
+
+                <div class="level-number">
+                    02
+                </div>
+
+                <div class="level-name">
+                    🚀 Explorador
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐ Fácil
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="3">
+
+                <div class="level-number">
+                    03
+                </div>
+
+                <div class="level-name">
+                    🌎 Astronauta
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐ Médio
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="4">
+
+                <div class="level-number">
+                    04
+                </div>
+
+                <div class="level-name">
+                    🔭 Observador
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐⭐ Médio
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="5">
+
+                <div class="level-number">
+                    05
+                </div>
+
+                <div class="level-name">
+                    🛰️ Comandante
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐⭐ Médio
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="6">
+
+                <div class="level-number">
+                    06
+                </div>
+
+                <div class="level-name">
+                    🪐 Especialista
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐⭐⭐ Difícil
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="7">
+
+                <div class="level-number">
+                    07
+                </div>
+
+                <div class="level-name">
+                    👨‍🚀 Cosmonauta
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐⭐⭐ Difícil
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="8">
+
+                <div class="level-number">
+                    08
+                </div>
+
+                <div class="level-name">
+                    🌠 Mestre Cósmico
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐⭐⭐ Difícil
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="9">
+
+                <div class="level-number">
+                    09
+                </div>
+
+                <div class="level-name">
+                    🧠 Gênio Espacial
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐⭐⭐⭐ Extremo
+                </div>
+
+            </div>
+
+
+            <div class="level" data-level="10">
+
+                <div class="level-number">
+                    10
+                </div>
+
+                <div class="level-name">
+                    👑 Lenda do Universo
+                </div>
+
+                <div class="level-stars">
+                    ⭐⭐⭐⭐⭐ Lendário
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     JOGO
+====================================================== -->
+
+<section class="game-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="emoji">
+                🚀
+            </div>
+
+            <h2>
+                Central de Comando
+            </h2>
+
+            <p>
+                Sua nave está pronta. Responda
+                antes que o tempo acabe!
+            </p>
+
+        </div>
+
+
+        <div class="game">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="game-header">
+
+                <div class="mission">
+
+                    <div class="mission-icon">
+                        👨‍🚀
+                    </div>
+
+                    <div>
+
+                        <div class="mission-name">
+                            Missão Espacial
+                        </div>
+
+                        <div class="progress-box">
+
+                            <div
+                                class="progress"
+                                id="progress">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="timer"
+                    id="timer">
+
+                    ⏱️ 20s
+
+                </div>
+
+
+                <div class="score">
+
+                    🏆 Pontos:
+                    <strong id="score">
+                        0
+                    </strong>
+
+                    <br>
+
+                    🔥 Combo:
+                    <strong id="combo">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ÁREA DA PERGUNTA -->
+
+            <div class="question-area">
+
+                <div
+                    class="badge"
+                    id="questionType">
+
+                    🪐 CARACTERÍSTICA PLANETÁRIA
+
+                </div>
+
+
+                <h3 id="questionText">
+                    Qual característica pertence
+                    a este planeta?
+                </h3>
+
+
+                <div
+                    class="planet-card"
+                    id="planetCard">
+
+                    <div
+                        class="planet-emoji"
+                        id="planetEmoji">
+
+                        🌎
+
+                    </div>
+
+                    <div
+                        class="planet-label"
+                        id="planetLabel">
+
+                        Terra
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="answers"
+                    id="answers">
+                </div>
+
+
+                <div
+                    class="feedback"
+                    id="feedback">
+                </div>
+
+
+                <div
+                    class="hint"
+                    id="hint">
+                </div>
+
+
+                <div class="controls">
+
+                    <button
+                        class="control"
+                        onclick="showHint()">
+
+                        💡 Dica
+
+                    </button>
+
+                    <button
+                        class="control"
+                        onclick="skipQuestion()">
+
+                        ⏭️ Pular
+
+                    </button>
+
+                    <button
+                        class="control"
+                        onclick="restartGame()">
+
+                        🔄 Reiniciar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     COMO JOGAR
+====================================================== -->
+
+<section id="como-jogar">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="emoji">
+                🌎
+            </div>
+
+            <h2>
+                Explore o Sistema Solar
+            </h2>
+
+            <p>
+                As perguntas abordam várias características
+                dos planetas.
+            </p>
+
+        </div>
+
+
+        <div class="knowledge">
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    ☀️
+                </div>
+
+                <h3>
+                    Distância do Sol
+                </h3>
+
+                <p>
+                    Descubra quais planetas estão
+                    mais próximos ou mais distantes
+                    do Sol.
+                </p>
+
+            </div>
+
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    🌡️
+                </div>
+
+                <h3>
+                    Temperatura
+                </h3>
+
+                <p>
+                    Compare as temperaturas e entenda
+                    por que distância do Sol não é o
+                    único fator importante.
+                </p>
+
+            </div>
+
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    🌙
+                </div>
+
+                <h3>
+                    Luas
+                </h3>
+
+                <p>
+                    Teste seus conhecimentos sobre
+                    os satélites naturais dos planetas.
+                </p>
+
+            </div>
+
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    💍
+                </div>
+
+                <h3>
+                    Anéis
+                </h3>
+
+                <p>
+                    Descubra quais planetas possuem
+                    sistemas de anéis.
+                </p>
+
+            </div>
+
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    🪨
+                </div>
+
+                <h3>
+                    Composição
+                </h3>
+
+                <p>
+                    Diferencie planetas rochosos
+                    dos gigantes gasosos e dos
+                    gigantes de gelo.
+                </p>
+
+            </div>
+
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    🔄
+                </div>
+
+                <h3>
+                    Rotação
+                </h3>
+
+                <p>
+                    Conheça os movimentos dos planetas
+                    ao redor de seus próprios eixos.
+                </p>
+
+            </div>
+
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    🛰️
+                </div>
+
+                <h3>
+                    Translação
+                </h3>
+
+                <p>
+                    Descubra quanto tempo cada planeta
+                    leva para completar sua órbita.
+                </p>
+
+            </div>
+
+
+            <div class="knowledge-card">
+
+                <div class="icon">
+                    🌪️
+                </div>
+
+                <h3>
+                    Curiosidades
+                </h3>
+
+                <p>
+                    Encontre perguntas especiais sobre
+                    características únicas de cada planeta.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     MODAL
+====================================================== -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-icon">
+            🏆
+        </div>
+
+        <h2>
+            Missão concluída!
+        </h2>
+
+        <div
+            class="final-score"
+            id="finalScore">
+
+            0
+
+        </div>
+
+        <div
+            class="final-message"
+            id="finalMessage">
+
+            Você completou sua missão espacial!
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            onclick="closeModal()">
+
+            🚀 Nova missão
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <h2>
+        🚀 ASTROQUIZ
+    </h2>
+
+    <p>
+        Explore • Descubra • Aprenda • Divirta-se
+    </p>
+
+    <p style="margin-top:15px;">
+        🌎 Sistema Solar • 🪐 Planetas • 🌌 Universo
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   BANCO DE PLANETAS
+========================================================= */
+
+const planets = [
+
+    {
+        name: "Mercúrio",
+        emoji: "☿️",
+        className: "mercurio",
+
+        facts: {
+            distance: "É o planeta mais próximo do Sol.",
+            type: "É um planeta rochoso.",
+            moons: "Não possui luas conhecidas.",
+            rings: "Não possui anéis.",
+            atmosphere: "Possui uma exosfera muito tênue.",
+            temperature: "Apresenta grandes variações de temperatura entre dia e noite.",
+            rotation: "Seu período de rotação é de aproximadamente 59 dias terrestres.",
+            year: "Seu ano dura aproximadamente 88 dias terrestres."
+        },
+
+        questions: [
+            {
+                text:
+                    "Qual é uma característica de Mercúrio?",
+
+                correct:
+                    "É o planeta mais próximo do Sol.",
+
+                options: [
+                    "É o planeta mais próximo do Sol.",
+                    "É o maior planeta.",
+                    "Possui anéis muito extensos.",
+                    "É um gigante de gelo."
+                ],
+
+                hint:
+                    "Pense no primeiro planeta a partir do Sol."
+            },
+
+            {
+                text:
+                    "Como é a composição de Mercúrio?",
+
+                correct:
+                    "É um planeta rochoso.",
+
+                options: [
+                    "É um planeta rochoso.",
+                    "É um gigante gasoso.",
+                    "É um gigante de gelo.",
+                    "É composto principalmente por hidrogênio líquido."
+                ],
+
+                hint:
+                    "Mercúrio faz parte dos quatro planetas internos rochosos."
+            },
+
+            {
+                text:
+                    "Quantas luas naturais Mercúrio possui?",
+
+                correct:
+                    "Não possui luas conhecidas.",
+
+                options: [
+                    "Não possui luas conhecidas.",
+                    "Possui 1 lua.",
+                    "Possui 2 luas.",
+                    "Possui 4 luas."
+                ],
+
+                hint:
+                    "É um dos dois planetas do Sistema Solar sem luas."
+            }
+        ]
+    },
+
+
+    {
+        name: "Vênus",
+        emoji: "♀️",
+        className: "venus",
+
+        facts: {
+            distance: "É o segundo planeta a partir do Sol.",
+            type: "É um planeta rochoso.",
+            moons: "Não possui luas conhecidas.",
+            rings: "Não possui anéis.",
+            atmosphere: "Possui uma atmosfera muito densa, rica em dióxido de carbono.",
+            temperature: "É o planeta mais quente do Sistema Solar em sua superfície.",
+            rotation: "Gira em sentido retrógrado em relação à maioria dos planetas.",
+            year: "Seu ano dura aproximadamente 225 dias terrestres."
+        },
+
+        questions: [
+            {
+                text:
+                    "Por que Vênus é extremamente quente?",
+
+                correct:
+                    "Por causa de seu intenso efeito estufa.",
+
+                options: [
+                    "Por causa de seu intenso efeito estufa.",
+                    "Porque possui muitos vulcões ativos no espaço.",
+                    "Porque é o planeta mais próximo do Sol.",
+                    "Porque possui anéis quentes."
+                ],
+
+                hint:
+                    "Sua atmosfera é muito densa e rica em dióxido de carbono."
+            },
+
+            {
+                text:
+                    "Qual é uma característica da rotação de Vênus?",
+
+                correct:
+                    "Ele possui rotação retrógrada.",
+
+                options: [
+                    "Ele possui rotação retrógrada.",
+                    "Ele não gira.",
+                    "Gira somente uma vez por ano.",
+                    "Gira mais rápido que Júpiter."
+                ],
+
+                hint:
+                    "Vênus gira no sentido oposto ao da maioria dos planetas."
+            },
+
+            {
+                text:
+                    "Quantas luas Vênus possui?",
+
+                correct:
+                    "Não possui luas conhecidas.",
+
+                options: [
+                    "Não possui luas conhecidas.",
+                    "Possui 1 lua.",
+                    "Possui 2 luas.",
+                    "Possui 7 luas."
+                ],
+
+                hint:
+                    "Vênus é um dos planetas sem satélites naturais."
+            }
+        ]
+    },
+
+
+    {
+        name: "Terra",
+        emoji: "🌎",
+        className: "terra",
+
+        facts: {
+            distance: "É o terceiro planeta a partir do Sol.",
+            type: "É um planeta rochoso.",
+            moons: "Possui um satélite natural: a Lua.",
+            rings: "Não possui anéis.",
+            atmosphere: "Possui uma atmosfera rica em nitrogênio e oxigênio.",
+            temperature: "Possui condições adequadas para a existência de água líquida na superfície.",
+            rotation: "Completa uma rotação em aproximadamente 24 horas.",
+            year: "Completa uma volta ao redor do Sol em aproximadamente 365 dias."
+        },
+
+        questions: [
+            {
+                text:
+                    "Qual característica torna a Terra especialmente conhecida?",
+
+                correct:
+                    "Possui água líquida abundante na superfície.",
+
+                options: [
+                    "Possui água líquida abundante na superfície.",
+                    "É o planeta mais próximo do Sol.",
+                    "É um gigante gasoso.",
+                    "Possui milhares de anéis."
+                ],
+
+                hint:
+                    "Pense na característica fundamental para a vida como conhecemos."
+            },
+
+            {
+                text:
+                    "Qual é o satélite natural da Terra?",
+
+                correct:
+                    "A Lua.",
+
+                options: [
+                    "A Lua.",
+                    "Europa.",
+                    "Titã.",
+                    "Fobos."
+                ],
+
+                hint:
+                    "É o objeto brilhante que vemos no céu noturno."
+            },
+
+            {
+                text:
+                    "Quanto aproximadamente dura um ano terrestre?",
+
+                correct:
+                    "365 dias.",
+
+                options: [
+                    "365 dias.",
+                    "88 dias.",
+                    "12 dias.",
+                    "687 dias."
+                ],
+
+                hint:
+                    "É aproximadamente o período que determina nosso calendário."
+            }
+        ]
+    },
+
+
+    {
+        name: "Marte",
+        emoji: "♂️",
+        className: "marte",
+
+        facts: {
+            distance: "É o quarto planeta a partir do Sol.",
+            type: "É um planeta rochoso.",
+            moons: "Possui duas pequenas luas: Fobos e Deimos.",
+            rings: "Não possui anéis.",
+            atmosphere: "Possui uma atmosfera fina, composta principalmente por dióxido de carbono.",
+            temperature: "É um planeta frio, com grandes variações de temperatura.",
+            rotation: "Seu dia, chamado sol, dura cerca de 24 horas e 39 minutos.",
+            year: "Seu ano dura aproximadamente 687 dias terrestres."
+        },
+
+        questions: [
+            {
+                text:
+                    "Por que Marte é conhecido como Planeta Vermelho?",
+
+                correct:
+                    "Por causa de minerais de ferro oxidados em sua superfície.",
+
+                options: [
+                    "Por causa de minerais de ferro oxidados em sua superfície.",
+                    "Porque possui lava vermelha cobrindo todo o planeta.",
+                    "Porque está muito próximo do Sol.",
+                    "Porque sua atmosfera é feita de gás vermelho."
+                ],
+
+                hint:
+                    "A resposta está relacionada ao ferro presente no solo marciano."
+            },
+
+            {
+                text:
+                    "Quais são as luas de Marte?",
+
+                correct:
+                    "Fobos e Deimos.",
+
+                options: [
+                    "Fobos e Deimos.",
+                    "Lua e Europa.",
+                    "Titã e Encélado.",
+                    "Io e Ganimedes."
+                ],
+
+                hint:
+                    "São duas pequenas luas com nomes associados ao medo e terror."
+            },
+
+            {
+                text:
+                    "Quanto aproximadamente dura um ano em Marte?",
+
+                correct:
+                    "687 dias terrestres.",
+
+                options: [
+                    "687 dias terrestres.",
+                    "88 dias terrestres.",
+                    "365 dias terrestres.",
+                    "29 dias terrestres."
+                ],
+
+                hint:
+                    "O ano marciano é quase o dobro do terrestre."
+            }
+        ]
+    },
+
+
+    {
+        name: "Júpiter",
+        emoji: "🟠",
+        className: "jupiter",
+
+        facts: {
+            distance: "É o quinto planeta a partir do Sol.",
+            type: "É um gigante gasoso.",
+            moons: "Possui muitas luas conhecidas, incluindo as quatro luas galileanas.",
+            rings: "Possui um sistema de anéis tênue.",
+            atmosphere: "É composta principalmente por hidrogênio e hélio.",
+            temperature: "Suas camadas superiores são muito frias, embora seu interior seja extremamente quente e comprimido.",
+            rotation: "Possui uma rotação muito rápida, levando cerca de 10 horas.",
+            year: "Seu ano dura aproximadamente 12 anos terrestres."
+        },
+
+        questions: [
+            {
+                text:
+                    "Qual é o maior planeta do Sistema Solar?",
+
+                correct:
+                    "Júpiter.",
+
+                options: [
+                    "Júpiter.",
+                    "Saturno.",
+                    "Netuno.",
+                    "Terra."
+                ],
+
+                hint:
+                    "É o gigante gasoso que domina em tamanho."
+            },
+
+            {
+                text:
+                    "Qual é uma característica de Júpiter?",
+
+                correct:
+                    "É um gigante gasoso.",
+
+                options: [
+                    "É um gigante gasoso.",
+                    "É um planeta rochoso pequeno.",
+                    "É um planeta anão.",
+                    "É um gigante de gelo."
+                ],
+
+                hint:
+                    "Júpiter e Saturno pertencem a uma categoria específica."
+            },
+
+            {
+                text:
+                    "Qual fenômeno famoso está presente na atmosfera de Júpiter?",
+
+                correct:
+                    "A Grande Mancha Vermelha.",
+
+                options: [
+                    "A Grande Mancha Vermelha.",
+                    "A Grande Mancha Azul.",
+                    "A Aurora Permanente.",
+                    "O Anel Branco."
+                ],
+
+                hint:
+                    "É uma gigantesca tempestade."
+            }
+        ]
+    },
+
+
+    {
+        name: "Saturno",
+        emoji: "🪐",
+        className: "saturno",
+
+        facts: {
+            distance: "É o sexto planeta a partir do Sol.",
+            type: "É um gigante gasoso.",
+            moons: "Possui muitas luas conhecidas, incluindo Titã.",
+            rings: "Possui um sistema de anéis muito proeminente.",
+            atmosphere: "É composta principalmente por hidrogênio e hélio.",
+            temperature: "É um planeta muito frio nas camadas superiores.",
+            rotation: "Completa uma rotação em aproximadamente 10,5 horas.",
+            year: "Seu ano dura aproximadamente 29,5 anos terrestres."
+        },
+
+        questions: [
+            {
+                text:
+                    "Qual planeta é famoso por seus grandes anéis?",
+
+                correct:
+                    "Saturno.",
+
+                options: [
+                    "Saturno.",
+                    "Marte.",
+                    "Mercúrio.",
+                    "Terra."
+                ],
+
+                hint:
+                    "É provavelmente o planeta mais facilmente reconhecido pelos seus anéis."
+            },
+
+            {
+                text:
+                    "Que tipo de planeta é Saturno?",
+
+                correct:
+                    "Gigante gasoso.",
+
+                options: [
+                    "Gigante gasoso.",
+                    "Planeta rochoso.",
+                    "Gigante de gelo.",
+                    "Planeta anão."
+                ],
+
+                hint:
+                    "Saturno é da mesma categoria de Júpiter."
+            },
+
+            {
+                text:
+                    "Qual é uma importante lua de Saturno?",
+
+                correct:
+                    "Titã.",
+
+                options: [
+                    "Titã.",
+                    "Lua.",
+                    "Fobos.",
+                    "Caronte."
+                ],
+
+                hint:
+                    "É uma das maiores luas do Sistema Solar."
+            }
+        ]
+    },
+
+
+    {
+        name: "Urano",
+        emoji: "🔵",
+        className: "urano",
+
+        facts: {
+            distance: "É o sétimo planeta a partir do Sol.",
+            type: "É um gigante de gelo.",
+            moons: "Possui muitas luas conhecidas.",
+            rings: "Possui um sistema de anéis.",
+            atmosphere: "Contém hidrogênio, hélio e metano.",
+            temperature: "Possui uma das atmosferas planetárias mais frias do Sistema Solar.",
+            rotation: "Possui um eixo de rotação extremamente inclinado.",
+            year: "Seu ano dura aproximadamente 84 anos terrestres."
+        },
+
+        questions: [
+            {
+                text:
+                    "Qual é uma característica muito incomum de Urano?",
+
+                correct:
+                    "Seu eixo de rotação é extremamente inclinado.",
+
+                options: [
+                    "Seu eixo de rotação é extremamente inclinado.",
+                    "Ele não possui atmosfera.",
+                    "É o planeta mais próximo do Sol.",
+                    "Não possui luas."
+                ],
+
+                hint:
+                    "Urano parece girar quase 'deitado'."
+            },
+
+            {
+                text:
+                    "Urano é classificado como qual tipo de planeta?",
+
+                correct:
+                    "Gigante de gelo.",
+
+                options: [
+                    "Gigante de gelo.",
+                    "Gigante gasoso.",
+                    "Planeta rochoso.",
+                    "Planeta anão."
+                ],
+
+                hint:
+                    "Urano e Netuno pertencem à mesma categoria."
+            },
+
+            {
+                text:
+                    "Qual gás contribui para a coloração azul-esverdeada de Urano?",
+
+                correct:
+                    "Metano.",
+
+                options: [
+                    "Metano.",
+                    "Oxigênio.",
+                    "Nitrogênio puro.",
+                    "Hidrogênio metálico."
+                ],
+
+                hint:
+                    "Esse gás absorve parte da luz vermelha."
+            }
+        ]
+    },
+
+
+    {
+        name: "Netuno",
+        emoji: "🔵",
+        className: "netuno",
+
+        facts: {
+            distance: "É o planeta mais distante do Sol.",
+            type: "É um gigante de gelo.",
+            moons: "Possui várias luas conhecidas, sendo Tritão a maior.",
+            rings: "Possui um sistema de anéis tênue.",
+            atmosphere: "É composta principalmente por hidrogênio, hélio e metano.",
+            temperature: "É extremamente frio.",
+            rotation: "Seu dia dura aproximadamente 16 horas.",
+            year: "Seu ano dura aproximadamente 165 anos terrestres."
+        },
+
+        questions: [
+            {
+                text:
+                    "Qual é o planeta mais distante do Sol?",
+
+                correct:
+                    "Netuno.",
+
+                options: [
+                    "Netuno.",
+                    "Urano.",
+                    "Saturno.",
+                    "Marte."
+                ],
+
+                hint:
+                    "É o oitavo planeta do Sistema Solar."
+            },
+
+            {
+                text:
+                    "Qual é uma característica de Netuno?",
+
+                correct:
+                    "É um gigante de gelo.",
+
+                options: [
+                    "É um gigante de gelo.",
+                    "É um planeta rochoso.",
+                    "É um gigante gasoso como Júpiter.",
+                    "É um planeta anão."
+                ],
+
+                hint:
+                    "Netuno pertence à mesma categoria de Urano."
+            },
+
+            {
+                text:
+                    "Qual é a maior lua de Netuno?",
+
+                correct:
+                    "Tritão.",
+
+                options: [
+                    "Tritão.",
+                    "Titã.",
+                    "Europa.",
+                    "Fobos."
+                ],
+
+                hint:
+                    "Seu nome lembra seres mitológicos do mar."
+            }
+        ]
+    }
+
+];
+
+
+/* =========================================================
+   PERGUNTAS EXTRAS
+   ========================================================= */
+
+const extraQuestions = [
+
+    {
+        level: 3,
+
+        text:
+            "Quais planetas são classificados como rochosos?",
+
+        correct:
+            "Mercúrio, Vênus, Terra e Marte.",
+
+        options: [
+            "Mercúrio, Vênus, Terra e Marte.",
+            "Júpiter, Saturno, Urano e Netuno.",
+            "Terra, Júpiter, Saturno e Marte.",
+            "Mercúrio, Saturno, Urano e Netuno."
+        ],
+
+        hint:
+            "São os quatro planetas mais próximos do Sol."
+    },
+
+    {
+        level: 4,
+
+        text:
+            "Quais são os gigantes gasosos?",
+
+        correct:
+            "Júpiter e Saturno.",
+
+        options: [
+            "Júpiter e Saturno.",
+            "Urano e Netuno.",
+            "Terra e Marte.",
+            "Mercúrio e Vênus."
+        ],
+
+        hint:
+            "São os dois maiores planetas do Sistema Solar."
+    },
+
+    {
+        level: 5,
+
+        text:
+            "Quais são os gigantes de gelo?",
+
+        correct:
+            "Urano e Netuno.",
+
+        options: [
+            "Urano e Netuno.",
+            "Júpiter e Saturno.",
+            "Terra e Marte.",
+            "Vênus e Mercúrio."
+        ],
+
+        hint:
+            "São os dois planetas mais externos entre os gigantes."
+    },
+
+    {
+        level: 6,
+
+        text:
+            "Qual planeta possui o dia mais curto entre os oito planetas?",
+
+        correct:
+            "Júpiter.",
+
+        options: [
+            "Júpiter.",
+            "Terra.",
+            "Marte.",
+            "Netuno."
+        ],
+
+        hint:
+            "O maior planeta gira extremamente rápido."
+    },
+
+    {
+        level: 7,
+
+        text:
+            "Qual planeta possui o ano mais longo?",
+
+        correct:
+            "Netuno.",
+
+        options: [
+            "Netuno.",
+            "Saturno.",
+            "Urano.",
+            "Júpiter."
+        ],
+
+        hint:
+            "Quanto mais distante do Sol, maior tende a ser o período orbital."
+    },
+
+    {
+        level: 8,
+
+        text:
+            "Qual planeta possui uma inclinação axial extremamente elevada?",
+
+        correct:
+            "Urano.",
+
+        options: [
+            "Urano.",
+            "Mercúrio.",
+            "Marte.",
+            "Júpiter."
+        ],
+
+        hint:
+            "Ele parece girar 'deitado' em sua órbita."
+    },
+
+    {
+        level: 9,
+
+        text:
+            "Qual planeta apresenta uma atmosfera extremamente densa e um forte efeito estufa?",
+
+        correct:
+            "Vênus.",
+
+        options: [
+            "Vênus.",
+            "Marte.",
+            "Mercúrio.",
+            "Netuno."
+        ],
+
+        hint:
+            "É o segundo planeta a partir do Sol."
+    },
+
+    {
+        level: 10,
+
+        text:
+            "Qual planeta possui uma Grande Mancha Vermelha, uma gigantesca tempestade atmosférica?",
+
+        correct:
+            "Júpiter.",
+
+        options: [
+            "Júpiter.",
+            "Saturno.",
+            "Netuno.",
+            "Marte."
+        ],
+
+        hint:
+            "É o maior planeta do Sistema Solar."
+    }
+
+];
+
+
+/* =========================================================
+   VARIÁVEIS DO JOGO
+========================================================= */
+
+let currentLevel = 1;
+
+let questionPool = [];
+
+let currentIndex = 0;
+
+let currentQuestion = null;
+
+let score = 0;
+
+let combo = 0;
+
+let timeLeft = 20;
+
+let timer = null;
+
+let answered = false;
+
+
+/* =========================================================
+   ELEMENTOS HTML
+========================================================= */
+
+const progress =
+    document.getElementById(
+        "progress"
+    );
+
+const timerElement =
+    document.getElementById(
+        "timer"
+    );
+
+const scoreElement =
+    document.getElementById(
+        "score"
+    );
+
+const comboElement =
+    document.getElementById(
+        "combo"
+    );
+
+const questionText =
+    document.getElementById(
+        "questionText"
+    );
+
+const questionType =
+    document.getElementById(
+        "questionType"
+    );
+
+const answers =
+    document.getElementById(
+        "answers"
+    );
+
+const feedback =
+    document.getElementById(
+        "feedback"
+    );
+
+const hint =
+    document.getElementById(
+        "hint"
+    );
+
+const planetCard =
+    document.getElementById(
+        "planetCard"
+    );
+
+const planetEmoji =
+    document.getElementById(
+        "planetEmoji"
+    );
+
+const planetLabel =
+    document.getElementById(
+        "planetLabel"
+    );
+
+
+/* =========================================================
+   EMBARALHAR ARRAY
+========================================================= */
+
+function shuffle(array) {
+
+    return [...array].sort(
+        () =>
+            Math.random() - 0.5
+    );
+
+}
+
+
+/* =========================================================
+   CRIAR BANCO DE PERGUNTAS
+========================================================= */
+
+function createQuestionPool() {
+
+    let pool = [];
+
+    /*
+       Para cada planeta, pegamos
+       suas perguntas.
+
+       Em níveis altos,
+       perguntas de outros níveis
+       também podem aparecer.
+    */
+
+    planets.forEach(planet => {
+
+        planet.questions.forEach(
+            question => {
+
+                pool.push({
+
+                    ...question,
+
+                    planet:
+                        planet
+
+                });
+
+            }
+        );
+
+    });
+
+
+    /*
+       Perguntas gerais entram
+       conforme o nível.
+    */
+
+    extraQuestions.forEach(
+        question => {
+
+            if (
+                question.level <=
+                currentLevel
+            ) {
+
+                pool.push({
+
+                    ...question,
+
+                    planet:
+                        null
+
+                });
+
+            }
+
+        }
+    );
+
+
+    /*
+       Em níveis maiores,
+       o jogo pode utilizar
+       mais perguntas.
+    */
+
+    const amount =
+        Math.min(
+            10 +
+            Math.floor(
+                currentLevel / 2
+            ),
+            pool.length
+        );
+
+
+    questionPool =
+        shuffle(pool)
+        .slice(0, amount);
+
+}
+
+
+/* =========================================================
+   INICIAR NÍVEL
+========================================================= */
+
+function startLevel(level) {
+
+    currentLevel = level;
+
+    currentIndex = 0;
+
+    score = 0;
+
+    combo = 0;
+
+    createQuestionPool();
+
+    updateLevelVisual();
+
+    updateScore();
+
+    showQuestion();
+
+    document
+        .querySelector(".game-section")
+        .scrollIntoView({
+            behavior:
+                "smooth"
+        });
+
+}
+
+
+/* =========================================================
+   MOSTRAR PERGUNTA
+========================================================= */
+
+function showQuestion() {
+
+    clearInterval(timer);
+
+    answered = false;
+
+    feedback.textContent = "";
+
+    hint.textContent = "";
+
+    currentQuestion =
+        questionPool[
+            currentIndex
+        ];
+
+
+    questionText.textContent =
+        currentQuestion.text;
+
+
+    /*
+       Se a pergunta estiver
+       relacionada a um planeta,
+       mostramos o planeta.
+    */
+
+    if (
+        currentQuestion.planet
+    ) {
+
+        const planet =
+            currentQuestion.planet;
+
+        planetCard.style.display =
+            "flex";
+
+        planetCard.className =
+            "planet-card " +
+            planet.className;
+
+        planetEmoji.textContent =
+            planet.emoji;
+
+        planetLabel.textContent =
+            planet.name;
+
+        questionType.textContent =
+            "🪐 CARACTERÍSTICA DE " +
+            planet.name.toUpperCase();
+
+    }
+
+    else {
+
+        planetCard.style.display =
+            "none";
+
+        questionType.textContent =
+            "🌌 DESAFIO DO SISTEMA SOLAR";
+
+    }
+
+
+    createAnswerButtons(
+        currentQuestion
+    );
+
+
+    /*
+       Tempo:
+
+       níveis baixos:
+       20 segundos
+
+       níveis altos:
+       mínimo de 8 segundos
+    */
+
+    timeLeft =
+        Math.max(
+            8,
+            21 -
+            currentLevel
+        );
+
+    updateTimer();
+
+
+    timer =
+        setInterval(
+            () => {
+
+                timeLeft--;
+
+                updateTimer();
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        timer
+                    );
+
+                    timeout();
+
+                }
+
+            },
+            1000
+        );
+
+
+    progress.style.width =
+        (
+            currentIndex /
+            questionPool.length *
+            100
+        ) + "%";
+
+}
+
+
+/* =========================================================
+   CRIAR RESPOSTAS
+========================================================= */
+
+function createAnswerButtons(
+    question
+) {
+
+    answers.innerHTML = "";
+
+    shuffle(
+        question.options
+    )
+    .forEach(option => {
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.className =
+            "answer";
+
+        button.textContent =
+            option;
+
+        button.onclick =
+            () =>
+                checkAnswer(
+                    button,
+                    option,
+                    question.correct
+                );
+
+        answers.appendChild(
+            button
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   VERIFICAR RESPOSTA
+========================================================= */
+
+function checkAnswer(
+    button,
+    selected,
+    correct
+) {
+
+    if (answered)
+        return;
+
+    answered = true;
+
+    clearInterval(timer);
+
+
+    document
+        .querySelectorAll(
+            ".answer"
+        )
+        .forEach(
+            btn => {
+                btn.disabled =
+                    true;
+            }
+        );
+
+
+    if (
+        selected ===
+        correct
+    ) {
+
+        button.classList.add(
+            "correct"
+        );
+
+        combo++;
+
+
+        const points =
+            100 +
+            timeLeft * 10 +
+            combo * 25 +
+            currentLevel * 20;
+
+
+        score += points;
+
+
+        feedback.textContent =
+            `🚀 ACERTOU! +${points} pontos!`;
+
+
+        feedback.style.color =
+            "#42e695";
+
+
+        createConfetti(
+            25
+        );
+
+    }
+
+    else {
+
+        button.classList.add(
+            "wrong"
+        );
+
+        combo = 0;
+
+
+        feedback.textContent =
+            `💥 Quase! A resposta correta era: ${correct}`;
+
+
+        feedback.style.color =
+            "#ff6685";
+
+
+        document
+            .querySelectorAll(
+                ".answer"
+            )
+            .forEach(
+                btn => {
+
+                    if (
+                        btn.textContent ===
+                        correct
+                    ) {
+
+                        btn.classList.add(
+                            "correct"
+                        );
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    updateScore();
+
+
+    setTimeout(
+        nextQuestion,
+        1500
+    );
+
+}
+
+
+/* =========================================================
+   TEMPO ESGOTADO
+========================================================= */
+
+function timeout() {
+
+    if (answered)
+        return;
+
+    answered = true;
+
+    combo = 0;
+
+
+    document
+        .querySelectorAll(
+            ".answer"
+        )
+        .forEach(
+            btn => {
+
+                btn.disabled =
+                    true;
+
+                if (
+                    btn.textContent ===
+                    currentQuestion.correct
+                ) {
+
+                    btn.classList.add(
+                        "correct"
+                    );
+
+                }
+
+            }
+        );
+
+
+    feedback.textContent =
+        "⏰ O tempo acabou!";
+
+    feedback.style.color =
+        "#ff6685";
+
+
+    setTimeout(
+        nextQuestion,
+        1500
+    );
+
+}
+
+
+/* =========================================================
+   PRÓXIMA PERGUNTA
+========================================================= */
+
+function nextQuestion() {
+
+    currentIndex++;
+
+
+    if (
+        currentIndex >=
+        questionPool.length
+    ) {
+
+        finishGame();
+
+    }
+
+    else {
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* =========================================================
+   PULAR
+========================================================= */
+
+function skipQuestion() {
+
+    if (answered)
+        return;
+
+    clearInterval(timer);
+
+    answered = true;
+
+    combo = 0;
+
+    feedback.textContent =
+        "⏭️ Você pulou esta pergunta.";
+
+    feedback.style.color =
+        "#ffd84d";
+
+
+    setTimeout(
+        nextQuestion,
+        700
+    );
+
+}
+
+
+/* =========================================================
+   DICA
+========================================================= */
+
+function showHint() {
+
+    if (answered)
+        return;
+
+
+    hint.textContent =
+        "💡 " +
+        currentQuestion.hint;
+
+
+    score =
+        Math.max(
+            0,
+            score - 20
+        );
+
+
+    updateScore();
+
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function updateTimer() {
+
+    timerElement.textContent =
+        `⏱️ ${timeLeft}s`;
+
+
+    if (
+        timeLeft <= 5
+    ) {
+
+        timerElement.style.background =
+            "#c9184a";
+
+    }
+
+    else {
+
+        timerElement.style.background =
+            "#ff5577";
+
+    }
+
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+function updateScore() {
+
+    scoreElement.textContent =
+        score;
+
+    comboElement.textContent =
+        combo;
+
+}
+
+
+/* =========================================================
+   FINAL DA MISSÃO
+========================================================= */
+
+function finishGame() {
+
+    clearInterval(timer);
+
+    progress.style.width =
+        "100%";
+
+
+    document
+        .getElementById(
+            "finalScore"
+        )
+        .textContent =
+        score + " ⭐";
+
+
+    let message;
+
+
+    if (
+        score >= 2200
+    ) {
+
+        message =
+            "👑 LENDÁRIO! Você é um verdadeiro mestre do Sistema Solar!";
+
+    }
+
+    else if (
+        score >= 1500
+    ) {
+
+        message =
+            "🌟 Excelente! Sua nave pode viajar para qualquer planeta!";
+
+    }
+
+    else if (
+        score >= 900
+    ) {
+
+        message =
+            "🚀 Muito bom! Você está se tornando um grande explorador espacial!";
+
+    }
+
+    else {
+
+        message =
+            "🌱 Boa tentativa! Continue explorando o Universo e tente novamente.";
+
+    }
+
+
+    document
+        .getElementById(
+            "finalMessage"
+        )
+        .textContent =
+        message;
+
+
+    document
+        .getElementById(
+            "modal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================================================
+   FECHAR MODAL
+========================================================= */
+
+function closeModal() {
+
+    document
+        .getElementById(
+            "modal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+    startLevel(
+        currentLevel
+    );
+
+}
+
+
+/* =========================================================
+   REINICIAR
+========================================================= */
+
+function restartGame() {
+
+    startLevel(
+        currentLevel
+    );
+
+}
+
+
+/* =========================================================
+   VISUAL DOS NÍVEIS
+========================================================= */
+
+function updateLevelVisual() {
+
+    document
+        .querySelectorAll(
+            ".level"
+        )
+        .forEach(
+            level => {
+
+                level.classList.remove(
+                    "active"
+                );
+
+
+                if (
+                    Number(
+                        level.dataset.level
+                    ) ===
+                    currentLevel
+                ) {
+
+                    level.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   CLIQUES NOS NÍVEIS
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".level"
+    )
+    .forEach(
+        level => {
+
+            level.addEventListener(
+                "click",
+                () => {
+
+                    startLevel(
+                        Number(
+                            level.dataset.level
+                        )
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   CONFETES
+========================================================= */
+
+function createConfetti(
+    amount
+) {
+
+    const colors = [
+
+        "#ffd84d",
+        "#42e695",
+        "#24c6ff",
+        "#7c4dff",
+        "#ff4fd8",
+        "#ff5577"
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+
+        piece.style.animationDelay =
+            Math.random() *
+            .8 +
+            "s";
+
+
+        document.body.appendChild(
+            piece
+        );
+
+
+        setTimeout(
+            () =>
+                piece.remove(),
+            3500
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   TECLADO
+
+   1, 2, 3 e 4 respondem
+   às alternativas.
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        const keys = [
+            "1",
+            "2",
+            "3",
+            "4"
+        ];
+
+
+        if (
+            keys.includes(
+                event.key
+            )
+        ) {
+
+            const index =
+                Number(
+                    event.key
+                ) - 1;
+
+
+            const buttons =
+                document.querySelectorAll(
+                    ".answer"
+                );
+
+
+            if (
+                buttons[index]
+            ) {
+
+                buttons[index].click();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INICIAR JOGO
+========================================================= */
+
+startLevel(1);
+
+</script>
+
+</body>
+</html>
+
